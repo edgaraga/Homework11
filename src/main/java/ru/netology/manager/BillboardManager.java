@@ -27,8 +27,8 @@ public class BillboardManager {
     public ViewingItem[] findLast() {
 
         int resultLength;
-        if (limitManager == 10) {
-            resultLength = 10;
+        if (limitManager == items.length) {
+            resultLength = items.length;
         } else {
             resultLength = limitManager;
         }
