@@ -8,7 +8,6 @@ public class BillboardManager {
     public BillboardManager(BillboardRepository repository) {
         this.repository = repository;
     }
-
     public BillboardManager(BillboardRepository repository, int limitManager) {
         this.repository = repository;
         this.limitManager = limitManager;
@@ -34,6 +33,9 @@ public class BillboardManager {
         }
         return result;
     }
+
+
+
 
 
 }

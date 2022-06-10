@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 public class BillboardRepositoryTest {
 
-    ViewingItem first = new ViewingItem(101, "Бладшот");
-    ViewingItem second = new ViewingItem(202, "Вперед");
-    ViewingItem third = new ViewingItem(303, "Отель 'Бельград'");
-    ViewingItem fourth = new ViewingItem(404, "Джентльмены");
-    ViewingItem fifth = new ViewingItem(505, "Человек - невидика");
-    ViewingItem sixth = new ViewingItem(606, "Тролли.Мировой тур");
-    ViewingItem seventh = new ViewingItem(707, "Номер один");
-    ViewingItem eighth = new ViewingItem(808, "Своя война");
-    ViewingItem ninth = new ViewingItem(909, "Мой папа - вождь");
-    ViewingItem tenth = new ViewingItem(1010, "Аманат");
+    ViewingItem first = new ViewingItem(101,"Бладшот");
+    ViewingItem second = new ViewingItem(202,"Вперед");
+    ViewingItem third = new ViewingItem(303,"Отель 'Бельград'");
+    ViewingItem fourth = new ViewingItem(404,"Джентльмены");
+    ViewingItem fifth = new ViewingItem(505,"Человек - невидика");
+    ViewingItem sixth = new ViewingItem(606,"Тролли.Мировой тур");
+    ViewingItem seventh = new ViewingItem(707,"Номер один");
+    ViewingItem eighth = new ViewingItem(808,"Своя война");
+    ViewingItem ninth = new ViewingItem(909,"Мой папа - вождь");
+    ViewingItem tenth = new ViewingItem(1010,"Аманат");
 
     @Test
     public void mustSaveAndFindAll() {
@@ -67,7 +67,7 @@ public class BillboardRepositoryTest {
         manager.add(sixth);
 
         ViewingItem actual = repo.findById(202);
-        ViewingItem expected = new ViewingItem(202, "Вперед");
+        ViewingItem expected = new ViewingItem(202,"Вперед");
 
         Assertions.assertEquals(expected, actual);
     }
@@ -155,3 +155,4 @@ public class BillboardRepositoryTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 }
+
