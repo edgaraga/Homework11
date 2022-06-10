@@ -1,32 +1,26 @@
 package ru.netology.manager;
 
-import ru.netology.domain.ViewingItem;
-
 public class BillboardManager {
 
     private int limitManager = 10;
+    private BillboardRepository repository;
 
-    private ViewingItem[] items = new ViewingItem[0];
-
-    public void save(ViewingItem item) {
-
-        int length = items.length + 1;
-        ViewingItem[] tmp = new ViewingItem[length];
-
-        System.arraycopy(items, 0, tmp, 0, items.length);
-
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
+    public BillboardManager(BillboardRepository repository) {
+        this.repository = repository;
+    }
+    public BillboardManager(BillboardRepository repository, int limitManager) {
+        this.repository = repository;
+        this.limitManager = limitManager;
     }
 
-    public ViewingItem[] findAll() {
-        return items;
+    public void add(ViewingItem item) {
+        repository.save(item);
     }
 
     public ViewingItem[] findLast() {
-
+        ViewingItem[] items = repository.findAll();
         int resultLength;
+
         if (limitManager == items.length) {
             resultLength = items.length;
         } else {
@@ -40,11 +34,8 @@ public class BillboardManager {
         return result;
     }
 
-    public BillboardManager(int limitManager) {
-        this.limitManager = limitManager;
-    }
 
-    public BillboardManager() {
-    }
+
+
 
 }
