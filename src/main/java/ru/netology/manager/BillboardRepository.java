@@ -2,18 +2,7 @@ package ru.netology.manager;
 
 public class BillboardRepository {
 
-    //private ViewingItem[] items = new ViewingItem[0];
-
-    private ViewingItem[] items = {
-            new ViewingItem(101, "Бладшот"),
-            new ViewingItem(202, "Вперед"),
-            new ViewingItem(303, "Отель 'Бельград'"),
-            new ViewingItem(404, "Джентльмены"),
-            new ViewingItem(505, "Человек - невидика"),
-            new ViewingItem(606, "Тролли.Мировой тур"),
-            //new ViewingItem(707, "Номер один")
-    };
-
+    private ViewingItem[] items = new ViewingItem[0];
 
     public void save(ViewingItem item) {
         int length = items.length + 1;

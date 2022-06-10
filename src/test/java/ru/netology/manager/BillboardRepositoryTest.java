@@ -12,10 +12,21 @@ public class BillboardRepositoryTest {
     ViewingItem fifth = new ViewingItem(505, "Человек - невидика");
     ViewingItem sixth = new ViewingItem(606, "Тролли.Мировой тур");
     ViewingItem seventh = new ViewingItem(707, "Номер один");
+    ViewingItem eighth = new ViewingItem(808, "Своя война");
+    ViewingItem ninth = new ViewingItem(909, "Мой папа - вождь");
+    ViewingItem tenth = new ViewingItem(1010, "Аманат");
 
     @Test
-    public void mustFindAll() {
+    public void mustSaveAndFindAll() {
         BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
 
         ViewingItem[] actual = repo.findAll();
         ViewingItem[] expected = {first, second, third, fourth, fifth, sixth};
@@ -24,20 +35,16 @@ public class BillboardRepositoryTest {
     }
 
     @Test
-    public void mustSave() {
-        BillboardRepository repo = new BillboardRepository();
-
-        repo.save(seventh);
-
-        ViewingItem[] actual = repo.findAll();
-        ViewingItem[] expected = {first, second, third, fourth, fifth, sixth, seventh};
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
     public void shouldRemoveById() {
         BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
 
         repo.removeById(202); //просим удалить
 
@@ -50,6 +57,14 @@ public class BillboardRepositoryTest {
     @Test
     public void shouldFindById() {
         BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
 
         ViewingItem actual = repo.findById(202);
         ViewingItem expected = new ViewingItem(202, "Вперед");
@@ -60,6 +75,14 @@ public class BillboardRepositoryTest {
     @Test
     public void shouldFindInvalidId() {
         BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
 
         ViewingItem actual = repo.findById(100);
         //ViewingItem expected = null;
@@ -70,11 +93,64 @@ public class BillboardRepositoryTest {
     @Test
     public void shouldRemoveAll() {
         BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
 
         repo.removeAll();
 
         ViewingItem[] actual = repo.findAll();
         ViewingItem[] expected = new ViewingItem[]{};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testManagerArrayDefaultMirror() {
+        BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+
+        ViewingItem[] actual = manager.findLast();
+        ViewingItem[] expected = {tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testManagerArrayLimitMirror() {
+        BillboardRepository repo = new BillboardRepository();
+        BillboardManager manager = new BillboardManager(repo, 5);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+
+
+        ViewingItem[] actual = manager.findLast();
+        ViewingItem[] expected = {tenth, ninth, eighth, seventh, sixth};
 
         Assertions.assertArrayEquals(expected, actual);
     }

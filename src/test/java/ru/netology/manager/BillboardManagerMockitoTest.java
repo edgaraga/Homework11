@@ -20,6 +20,10 @@ public class BillboardManagerMockitoTest {
     ViewingItem fourth = new ViewingItem(404, "Джентльмены");
     ViewingItem fifth = new ViewingItem(505, "Человек - невидика");
     ViewingItem sixth = new ViewingItem(606, "Тролли.Мировой тур");
+    ViewingItem seventh = new ViewingItem(707, "Номер один");
+    ViewingItem eighth = new ViewingItem(808, "Своя война");
+    ViewingItem ninth = new ViewingItem(909, "Мой папа - вождь");
+    ViewingItem tenth = new ViewingItem(1010, "Аманат");
 
     // ViewingItem seventh = new ViewingItem(707,"Номер один");
 /*
@@ -38,12 +42,12 @@ public void mustGetAll() {
     public void mustShowSixFilm() {
 
 
-        ViewingItem[] returned = new ViewingItem[]{first, second, third, fourth, fifth, sixth};
+        ViewingItem[] returned = new ViewingItem[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth};
         doReturn(returned).when(repository).findAll();
 
 
-        ViewingItem[] actual = manager.getAll();
-        ViewingItem[] expected = new ViewingItem[]{sixth, fifth, fourth, third, second, first};
+        ViewingItem[] actual = manager.findLast();
+        ViewingItem[] expected = new ViewingItem[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
 
         Assertions.assertArrayEquals(expected, actual);
 
@@ -60,7 +64,7 @@ public void mustGetAll() {
         manager.add(fifth);
 
         ViewingItem[] expected = new ViewingItem[]{fifth};
-        ViewingItem[] actual = manager.getAll();
+        ViewingItem[] actual = repository.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
 
